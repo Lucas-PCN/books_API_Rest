@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import { getAllBooks } from '../controllers/booksController.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Rota de livros funcionando 🚀' });
-});
+router.get('/', getAllBooks);
 
 export default router;
