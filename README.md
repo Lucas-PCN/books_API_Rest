@@ -1,91 +1,101 @@
-📚 Books API — Node.js + PostgreSQL
+# 📚 Books API — Node.js + PostgreSQL
 
-API RESTful desenvolvida em Node.js com Express e PostgreSQL para gerenciamento de livros.
-Este projeto faz parte do desafio de Backend do Bolsa Futuro Digital.
+API RESTful desenvolvida em Node.js com Express e PostgreSQL para gerenciamento de livros.  
+Este projeto faz parte do desafio de Backend do **Bolsa Futuro Digital**.
 
-🚀 Tecnologias Utilizadas
+---
 
-Node.js
+## 🚀 Tecnologias Utilizadas
 
-Express.js
+- Node.js  
+- Express.js  
+- PostgreSQL  
+- pg  
+- dotenv  
+- nodemon  
 
-PostgreSQL
+---
 
-pg
+## 📦 Instalação
 
-dotenv
+1. Clone o repositório:
 
-nodemon
+git clone https://github.com/seu-usuario/books_API_Rest.git  
+cd books_API_Rest  
 
-📦 Instalação
+2. Instale as dependências:
 
-Clone o repositório:
+npm install  
 
-git clone https://github.com/seu-usuario/books_API_Rest.git
-cd books_API_Rest
+3. Crie o arquivo `.env`:
 
+DB_HOST=localhost  
+DB_USER=postgres  
+DB_PASSWORD=sua_senha  
+DB_NAME=booksdb  
+DB_PORT=5432  
+PORT=3000  
 
-Instale as dependências:
+---
 
-npm install
-
-
-Crie o arquivo .env:
-
-DB_HOST=localhost
-DB_USER=postgres
-DB_PASSWORD=sua_senha
-DB_NAME=booksdb
-DB_PORT=5432
-PORT=3000
-
-🗄️ Banco de Dados
+## 🗄️ Banco de Dados
 
 Crie o banco:
 
 CREATE DATABASE booksdb;
 
+Conecte-se ao banco:
+
+\c booksdb
 
 Crie a tabela:
 
-CREATE TABLE books (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(200) NOT NULL,
-  category VARCHAR(100) NOT NULL,
-  price NUMERIC(10,2) NOT NULL
+CREATE TABLE books (  
+  id SERIAL PRIMARY KEY,  
+  name VARCHAR(200) NOT NULL,  
+  category VARCHAR(100) NOT NULL,  
+  price NUMERIC(10,2) NOT NULL  
 );
-
 
 Execute o seed:
 
-sudo -u postgres psql
-\c booksdb
-\i seed.sql
+sudo -u postgres psql  
+\c booksdb  
+\i seed.sql  
 
-▶️ Executar o servidor
-npm run dev
+---
 
+## ▶️ Executar o servidor
+
+npm run dev  
 
 Servidor rodando em:
 
 http://localhost:3000
 
-📡 Endpoints
-🔹 Listar todos os livros
+---
+
+## 📡 Endpoints
+
+### 🔹 Listar todos os livros
 GET /books
 
-🔹 Buscar por nome
+---
+
+### 🔹 Buscar livros por nome
 GET /books?name=harry
 
-🔹 Buscar por categoria
+---
+
+### 🔹 Buscar livros por categoria
 GET /books?category=Fantasia
 
-🔹 Buscar livro por ID
+---
+
+### 🔹 Buscar livro por ID
 GET /books/:id
 
-
-Resposta (sucesso):
-
+Resposta de sucesso:
 {
   "id": 1,
   "name": "Harry Potter",
@@ -93,72 +103,69 @@ Resposta (sucesso):
   "price": "39.90"
 }
 
-
-Resposta (erro 404):
-
+Resposta de erro (404):
 {
   "error": "Livro não encontrado"
 }
 
-🔹 Criar livro
+---
+
+### 🔹 Criar livro
 POST /books
 
-
 Body:
-
 {
   "name": "Senhor dos Anéis",
   "category": "Fantasia",
   "price": 99.90
 }
 
-🔹 Atualizar livro (completo)
+---
+
+### 🔹 Atualizar livro (completo)
 PUT /books/:id
 
-
 Body:
-
 {
   "name": "Clean Code",
   "category": "Programação",
   "price": 89.90
 }
 
-🔹 Atualizar livro (parcial)
+---
+
+### 🔹 Atualizar livro (parcial)
 PATCH /books/:id
 
-
 Exemplo:
-
 {
   "price": 59.90
 }
 
-🔹 Deletar livro
+---
+
+### 🔹 Deletar livro
 DELETE /books/:id
 
-
 Resposta:
-
 {
   "message": "Livro deletado com sucesso"
 }
 
-✅ Funcionalidades
+---
 
-CRUD completo de livros
+## ✅ Funcionalidades
 
-Filtros por nome e categoria
+- CRUD completo de livros  
+- Filtros por nome e categoria  
+- Validação de erro 404  
+- Banco PostgreSQL  
+- Respostas JSON  
+- Estrutura MVC  
 
-Validação de erro 404
+---
 
-Banco PostgreSQL
+## 👨‍💻 Autor
 
-Respostas JSON
-
-Estrutura MVC
-
-👨‍💻 Autor
-
-Lucas Pereira Castanheira Nascimento
-Projeto desenvolvido para o Bolsa Futuro Digital
+Lucas Pereira Castanheira Nascimento  
+Projeto desenvolvido para o **Bolsa Futuro Digital**
