@@ -86,6 +86,41 @@ export const updateBook = async (req, res) => {
   }
 };
 
+export const patchBook = async (req, res) => {
+    const { id } = req.params;
+    const { name, category, price } = req.body;
+  
+    try {
+      // Primeiro, buscamos o livro atual
+      const current = await pool.query(
+        'SELECT * FROM books WHERE id = $1',
+        [id]
+      );
+  
+      if (current.rows.length === 0) {
+        return res.status(404).json({ error: 'Livro não encontrado' });
+      }
+  
+      const book = current.rows[0];
+  
+      // Se não vier no body, mantém o valor atual
+      const newName = name ?? book.name;
+      const newCategory = category ?? book.category;
+      const newPrice = price ?? book.price;
+  
+      const updated = await pool.query(
+        'UPDATE books SET name = $1, category = $2, price = $3 WHERE id = $4 RETURNING *',
+        [newName, newCategory, newPrice, id]
+      );
+  
+      return res.json(updated.rows[0]);
+  
+    } catch (error) {
+      return res.status(500).json({ error: 'Erro ao atualizar livro' });
+    }
+  };
+  
+
 export const deleteBook = async (req, res) => {
   const { id } = req.params;
 
@@ -104,4 +139,3 @@ export const deleteBook = async (req, res) => {
     return res.status(500).json({ error: 'Erro ao deletar livro' });
   }
 };
-
